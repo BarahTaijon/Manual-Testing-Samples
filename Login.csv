@@ -1,0 +1,204 @@
+Test Case ID,Test Case Description,Feature,Preconditions,Test Data,Test Steps,Expected Result,Actual Result ,Status (Pass/Fail)
+TC_LOGIN_001,"verify that login screen contains elements and the font style, color, and size are meet requirements.",Login,"1. Internet is available
+2. User is on the login page",N/A,"1. Open the application URL/APP
+2. Navigate to the login page","1. All required elements are displayed
+2. Font style, color, and size meet requirements
+2. All elements are clearly visible.",,
+TC_LOGIN_002,Verify that the application UI is responsive across different devices,Login,"1. The required devices are available [Mobile phone, tablet, laptop, desktop] 
+2. Internet is available
+3. User is on the login page",N/A,"1. Open the application URL/App in the required device.
+2. Navigate to the login page on
+","1. Login page layout adapts to each screen size correctly
+2. UI elements are clearly visible
+3. Login functionality works as expected on all devices",,
+TC_LOGIN_003,Verify that the login page displays correctly in different browsers.,Login,"1. Required browsers are available [Chrome, Firefox, Edge, Safari]
+2. Internet is available
+3. User is on the login page",N/A,"1. Open the application URL in each browser.
+2. Navigate to the login page on","1. Login page displays correctly without UI breaks
+2. All elements are visible and aligned properly
+3. Login functionality works as expected in all browsers",,
+TC_LOGIN_004,Verify that keyboard navigation and form submission on Login page.,Login,"1. Internet is available
+2. User is on the login page",valid user name and password,"1. Open the application App/URL
+2. Navigate to the login page on.
+3. Press Tab key repeatedly to navigate through all input fields and controls
+4. Enter valid credentials
+5. Press Enter key on Password field or Sign-in button","1. User can navigate through all controls using Tab key
+2. The focus moves in correct order (Username ? Password ? Sign In)
+3. User can successfully login using Enter key.",,
+TC_LOGIN_005,Verify that the User is able to Login with Valid Credentials,Login,"1. Internet is available
+2. User is on the login page","Alphanumeric UN:
+user_name = ""barah123""
+password = ""123456""
+
+minimum allowed in UN:
+user_name = ""bar""
+password = ""123456""
+
+minimum allowed in pswrd:
+user_name = ""barah""
+password = ""12345""
+
+maximum allowed in UN:
+user_name = ""abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx""
+password = ""123456""
+
+maximum allowed in pswrd:
+user_name = ""barah""
+password = ""P@ssw0rd1234567890""
+
+Upper & Lower UN:
+user_name = ""BARah""
+password = ""123456""
+","1. Open the login page
+2. Enter valid user name and password 
+3. Click the Sign-In button","1. The cursor is focused on the ?Username?.
+2. The username and password have a valid placeholder.
+3.the password is in masked form when typed in the password field.
+4. User is redirected to the home/dashboard page
+5. the time taken to login is per requirement
+6. A welcome message is displayed.",,
+TC_LOGIN_006,Verify that the User cannot Login with an invalid Username and invalid Password,Login,"1. Internet is available
+2. User is on the login page","user_name = ""mmmm""
+password = ""8888""
+
+","1. Open the login page
+2. Enter invalid user name and password 
+3. Click the Sign-In button","1. Login is unsuccessful and the user remains on the Login page
+2. An error message is displayed ""Invalid username or password. Please try again""",,
+TC_LOGIN_007,Verify that the User cannot Login with a Valid Username and invalid Password,Login,"1. Internet is available
+2. User is on the login page","user_name = ""Barah""
+password = ""8888""","1. Open the login page
+2. Enter valid user name and invalid password 
+3. Click the Sign-In button","1. Login is unsuccessful and user remains on the Login page
+2. An error message is displayed ""Invalid username or password. Please try again""",,
+TC_LOGIN_008,Verify that the User cannot log in with an invalid Username and Valid Password,Login,"1. Internet is available
+2. User is on the login page","Unexist UN:
+user_name = ""mmmmm""
+password = ""123456""
+
+special char UN:
+user_name = ""*&^%""
+password = ""123456""","1. Open the application URL/APP
+2. Navigate to the login page
+3. Enter invalid user name and valid password 
+4. Click Sign-in button","1. Login is unsuccessful and user remains on the Login page
+2. An error message is displayed ""Invalid username or password. Please try again""",,
+TC_LOGIN_009,Verify that the User cannot log in with a blank Username or/and Password,Login,"1. Internet is available
+2. User is on the login page","user_name = """"
+password = """" 
+
+user_name = ""barah""
+password = """" 
+
+user_name = """"
+password = ""123456"" ","1. Open login page
+2. leave user name and/or password blanks
+3. Click the Sign-In button","1. Login is unsuccessful and user remains on the Login page
+2. An error message is displayed ""Invalid username or password. Please try again""",,
+TC_LOGIN_010,"Verify that the user cannot exceed the character limit of the Username and Password fields 
+",Login,"1. Internet is available
+2. User is on the login page","user_namr = ""abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx""
+password = ""123456"" 
+
+user_name = ""barah""
+password = ""gfdgs12345660??:K*J""U***(((*&&"" ","1. Open the application URL/APP
+2. Navigate to the login page
+3. Enter user name and valid password 
+",User cannot enter characters beyond the maximum allowed limit.,,
+TC_LOGIN_011,Verify that the User cannot Login with inactive credentials,Login,"1. Internet is available
+2. User is on the login page
+3. Inactive account",inactive user_name  & password ,"1. Open the login page
+2. Enter inactive credentials
+3. Click the Sign-In button","1. Login is unsuccessful and user remains on the Login page
+2. Appropriate error message is displayed",,
+TC_LOGIN_012,Verify that the Multiple consecutive failed login attempts triggering an account locked out.,Login,"1. Internet is available
+2. User is on the login page
+",valid user name and invalid password,"1. Open the login page
+2. Enter valid user name and invalid password 
+3. Click the Sign-In button
+4. Repeat the (2&3) multiple times","1. An error message is displayed ""Account is locked after multiple failed login attempts""
+2. Account is locked.",,
+TC_LOGIN_013,Verify that clicking on the browser back button after successful login should not take the User to log-out mode,Login,"1. Internet is available
+2. User is on the login page
+",valid user name and password,"1. Open the login page
+2. Enter valid credentials
+3. Click the Sign-In button
+4. Click back button ",1. User remain in the home page and logged-in,,
+TC_LOGIN_014,"Verify that closing the browser should not log out an authenticated user, when session persistence is enabled. ",Login,"1. Internet is available
+2. User is on the login page
+3. Session persistence is enabled",valid user name and password,"1. Open the login page
+2. Enter valid credentials
+3. Click the Sign-In button
+4. Close the browser
+5. Reopen the browser 
+6. Open the application URL
+",1. User remain logged-in,,
+TC_LOGIN_015,"Verify that user can Successful login with the ""Remember Me"" option selected.",Login,"1. Internet is available
+2. User is on the login page
+",valid user name and password,"1. Open the login page
+2. Enter valid credentials
+3. check the ""Remember Me"" checkbox
+4. Click the Sign-In button
+5. Click log-out button
+ ","1. ""Remember Me"" checkbox is unselected by default.
+2. Successful login with the ""Remember Me"" option selected.
+2. After ""Remember Me"" checkbox is selected, Username, and Password data field properly remain in the field when logged-out",,
+TC_LOGIN_016,Verify that the user cannot copy-paste password,Login,"1. Internet is available
+2. User is on the login page
+",valid user name and password,"1. Open the login page
+2. Enter valid username
+3. Copy-paste password
+",1. Inability to pasted the Password,,
+TC_LOGIN_017,Verify that the user is redirected to the Forgot password page when clicking on the Forgot Password link,Login,"1. Internet is available
+2. User is on the login page
+",N/A,"1. Open the login page
+2. Click on Forgot Password link
+",1. The user is redirect to the forgot password page,,
+TC_LOGIN_018,Verify that the user is redirected to the create an account page when clicking on the Create an account link ,Login,"1. Internet is available
+2. User is on the login page
+",N/A,"1. Open the login page
+2. Clcik on Create an Account link
+",1. The user is redirect to the Create an Account page,,
+TC_LOGIN_019,Verify that the user can login with the new password after changing the password and cannot login with the old one.,Login,"1. Internet is available
+2. User is on the login page
+3. A vaild registered account 
+",valid user name and password,"1. Open the login page
+2. Enter valid cridential 
+3. Click sign-in button 
+4. Change the password 
+5. Click logout button 
+6. Enter the old password 
+7. Click sign-in button 
+8. Enter the new password 
+9. Click sign-in button 
+","1. Login is unsuccessful with the old password.
+2. Login is successful with the new password.",,
+TC_LOGIN_020,Verify that the cannot enter spaces before any password characters attempted,Login,"1. Internet is available
+2. User is on the login page
+","user_name = ""barah""
+password = ""1 23 456"" ","1. Open the login page
+2. Enter username and password
+3. Click the Sign-In button
+",1. Login is unsuccessful ,,
+TC_LOGIN_021,Verify that the system remove spaces as first character in password and username,Login,"1. Internet is available
+2. User is on the login page
+","user_name = "" barah""
+password = ""123456"" 
+
+user_name = ""barah""
+password = ""   123456"" ","1. Open the login page
+2. Enter username and password
+3. Click the Sign-In button
+",1. System trim the first character spaces. ,,
+TC_LOGIN_022,Verify that the user can login with localization settings (testing with different languages).,Login,"1. Internet is available
+2. User is on the login page
+",valid user name and password,"1. Open the login page.
+2. Change the language.
+2. Enter username and password
+3. Click the Sign-In button
+",1. Login is successful and UI text is displayed in the selected language.,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,

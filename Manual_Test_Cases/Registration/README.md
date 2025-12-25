@@ -1,4 +1,4 @@
-# 📝 Registration Feature – Test Cases
+# Registration Feature – Test Cases
 
 ## 📌 Overview
 This repository contains comprehensive **manual test cases** for the **Registration feature** of a web application.  

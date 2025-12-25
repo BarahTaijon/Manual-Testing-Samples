@@ -1,4 +1,4 @@
-# Login Feature – Manual Test Cases
+# Login Feature – Test Cases
 
 This folder contains manual test cases created for the **Login feature** of a web application.
 The test cases are designed as part of a training and learning exercise to demonstrate

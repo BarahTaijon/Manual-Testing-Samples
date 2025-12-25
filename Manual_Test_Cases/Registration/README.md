@@ -67,4 +67,7 @@ Each test case includes the following fields:
 
 ---
 
-## 📁 File Structure
+## 📝 Notes
+- This is a **training project**.
+- Test cases are written to demonstrate testing knowledge, not to validate a real production system.
+

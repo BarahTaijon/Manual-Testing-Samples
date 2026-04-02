@@ -1,0 +1,45 @@
+﻿Bug ID,Summary / Title,Module,Environment,Build Version,Test Case ID,Preconditions,Test Steps,Actual Result,Expected Result,Attachments,Reported By,Date Reported,Status
+BUG-LOGIN-001,User cannot login with valid credentials - page refreshes with no error message,Login,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_014,"Valid user account exists (username: testuser, password: Test@123)","1. Navigate to login page
+2. Enter valid username: testuser
+3. Enter valid password: Test@123
+4. Click Sign-in button",Page refreshes and stays on login page. No error message displayed. User remains not logged in.,User is successfully logged in and redirected to dashboard/home page,Screenshot.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-002,Login page vulnerable to SQL injection - authentication bypass possible,Login - Security,Windows 11 / Firefox 124 / Staging,v2.1.0,TC_LOGIN_041,Login page is accessible,"1. Navigate to login page
+2. In Username field enter: ' OR '1'='1' --
+3. In Password field enter: anything
+4. Click Sign-in button",User is successfully logged in without providing valid credentials. SQL injection payload bypassed authentication.,"Login fails with ""Invalid username or password"" message. System should sanitize input to prevent SQL injection.","SQL_Injection_Screenshot.png, Burp_Log.txt",Barah Taijon,3/31/2026,New
+BUG-LOGIN-003,Password field accepts leading spaces - should be trimmed or rejected,Login - Field Validation,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_034,Valid user account exists,"1. Navigate to login page
+2. Enter valid username
+3. Enter valid password with leading spaces (e.g., "" Test@123"")
+4. Click Sign-in button","Login fails with ""Invalid username or password"" message because leading spaces are not trimmed",System should either trim leading spaces automatically or show validation message; login should succeed with correct password regardless of leading spaces,Screenshot.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-004,No validation message when exceeding character limit in Username field,Login - Field Validation,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_012,Login page is loaded,"1. Navigate to login page
+2. Enter username exceeding maximum allowed length (e.g., 51 characters when max is 50)
+3. Tab out of field or click Sign-in",System allows entering beyond limit OR no validation message appears; user can type unlimited characters,System prevents entering beyond maximum limit OR displays clear validation message indicating character limit exceeded,Screenshot_Char_Limit.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-005,Session does not timeout after idle period,Login - Session,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_029,User is logged in successfully,"1. Login successfully
+2. Leave application idle for configured timeout period (e.g., 10 minutes) 
+3. Attempt to perform an action (e.g., click any button or navigate)",User session remains active; user can perform actions without re-authentication,Session expires after idle timeout; user is redirected to login page or prompted to re-authenticate,Screenshot_Session_Timeout.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-006,Error message reveals whether username exists in system,Login - Security,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_048,Valid and invalid usernames available,"1. Attempt login with existing username + wrong password
+2. Observe error message
+3. Attempt login with non-existing username + any password
+4. Compare both error messages","Different error messages appear:
+- Existing username: ""Password incorrect""
+- Non-existing username: ""Username not found""
+","Both attempts display the same generic error message (e.g., ""Invalid username or password""). System does not reveal whether username exists.",Screenshot_Error_Messages.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-007,XSS vulnerability on login page,Login - Security,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_042,Login page is loaded,"1. Navigate to login page
+2. In Username field enter: <script>alert('XSS')</script>
+3. In Password field enter: any value
+4. Click Sign-in button",JavaScript alert executes; XSS script is reflected on page,System sanitizes input; scripts are not executed; input is displayed as plain text,XSS_Screenshot.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-008,Password stored in plain text in database,Login - Security,Database access in Staging environment,v2.1.0,TC_LOGIN_032,"Database read access, ability to create new user","1. Create new user via UI with password ""Test@123""
+2. Run SELECT query: SELECT username, password FROM users WHERE username = 'newuser'
+3. View stored password value","Stored password appears as plain text: ""Test@123""","Password is stored in encrypted/hashed format (e.g., bcrypt, SHA-256 with salt). Plain text storage is not acceptable.",Database_Query_Screenshot.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-009,Blank fields do not show validation messages,Login - Field Validation,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_018_C,Login page is loaded,"1. Navigate to login page
+2. Leave both Username and Password fields blank
+3. Click Sign-in button",Page refreshes or submits without any validation message; no indication that fields are required,Validation messages appear indicating both fields are required; login is prevented,Screenshot_Blank_Fields.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-010,Focus does not move to invalid field after validation,Login - Accessibility,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_018_G,Login page is loaded,"1. Leave Username blank
+2. Enter valid password
+3. Click Sign-in button",Focus stays on Sign-in button or moves to Password field instead of Username field,Focus automatically moves to the first invalid field (Username field) to allow user to correct error easily,Screenshot_Focus_Behavior.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-011,SSL certificate is expired or not properly implemented,Login - Security,HTTPS URL / Production,v2.1.0,TC_LOGIN_046,Login page URL is accessible,"1. Navigate to login page via HTTPS
+2. Click on padlock icon in browser address bar
+3. Check SSL certificate details and expiration date","SSL certificate is expired OR browser shows ""Not Secure"" warning OR certificate is not valid","SSL certificate is valid, not expired, and properly implemented. Connection is secure with valid HTTPS.",SSL_Certificate_Screenshot.png,Barah Taijon,3/31/2026,New
+BUG-LOGIN-012,Browser back button after successful login takes user to login page,Login - Session,Windows 11 / Chrome 120 / Staging,v2.1.0,TC_LOGIN_025,User is logged in successfully,"1. Login successfully and navigate to dashboard
+2. Click browser back button",User is taken back to login page; session appears to be logged out,User is not taken to logout mode; session remains active; user stays within authenticated area or is redirected appropriately,Screenshot_Back_Button.png,Barah Taijon,3/31/2026,New
+,,,,,,,,,,,,,

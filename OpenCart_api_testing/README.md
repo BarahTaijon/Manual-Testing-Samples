@@ -39,7 +39,7 @@ openshop.sql
 
 ### Newman Execution
 Below is the terminal output after running the collection:
-
+!![Newman CLI](OpenCart_api_testing/secreenshots/newman-cli.PNG)
 ### Newman HTML Report Execution
 Below is the terminal output after running the collection:
 
